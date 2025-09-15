@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #333;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1800px;
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.top h1 {
+  font-size: 40px;
+}
+
+.btn {
+  display: block;
+  background: none;
+  border: none;
+  background-color: royalblue;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.showing {
+  animation: showing 1s;
+}
+
+.taskModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #6b6b6b;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+.taskModal h2 {
+  text-align: center;
+  font-size: 40px;
+}
+.taskModal p {
+  margin: 5px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.taskModal .error {
+  font-size: 16px;
+  color: red;
+}
+.taskModal input {
+  width: 100%;
+}
+.taskModal textarea {
+  resize: vertical;
+  max-height: 300px;
+  width: 100%;
+}
+.taskModal .btn {
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  z-index: 5;
+  transition: 0.3s;
+}
+
+.infobox {
+  margin-top: 20px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.task {
+  background-color: royalblue;
+  border-radius: 15px;
+  margin: 10px 0;
+  padding: 20px;
+}
+.task .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.task .infoTask {
+  display: flex;
+  justify-content: space-between;
+}
+.task .infoTask .taskName {
+  font-size: 36px;
+}
+.task .infoTask .taskCategory {
+  font-size: 20px;
+}
+.task .teskDescription {
+  margin-top: 15px;
+  font-size: 20px;
+}
+.task button {
+  border: 1px solid black;
+  background-color: rgb(51, 85, 189);
+}
+.task .showDesc {
+  margin-right: 5px;
+}
+
+@keyframes showing {
+  0% {
+    opacity: 0;
+    scale: 0.95;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+    <main>
+        <div class="top">
+            <h1>ToDoList</h1>
+
+            <button class="btn addTask">Add</button>
+        </div>
+
+        <div class="taskModal hidden">
+            <h2 class="modalMessage">Create task</h2>
+
+            <p>Name of task</p>
+            <input type="text" name="" id="" class="taskName">
+            <p class="errorName error hidden">Fill this ^</p>
+            <p>Choose category</p>
+            <select id="addCategory" name="category" class="category">
+                <option value="Done">Done</option>
+                <option value="Not done">Not done</option>
+                <option value="During">During</option>
+            </select>
+            <p class="errorCate error hidden">Fill this ^</p>
+              <p>Describe it</p>
+              <textarea name="" id="" class="taskDesc"></textarea>
+
+              <button class="btn closeModalAdd">Add task</button>
+              <button class="btn closeModalEdit hidden">Edit task</button>
+        </div>
+        <div class="overlay hidden"></div>
+
+        <div class="infobox">
+            <h2>Search tasks by category</h2>
+            <select id="category" name="category" class="categoryF">
+                <option value="All">All</option>
+                <option value="Done">Done</option>
+                <option value="Not done">Not done</option>
+                <option value="During">During</option>
+              </select>
+        </div>
+
+        <div class="taskBox wrapper">
+            <div class="taskExample task hidden">
+                <div class="infoTask">
+                    <div class="left">
+                        <h1 class="taskName"></h1>
+                        <p class="taskCategory"></p>
+                    </div>
+                    <div class="right">
+                        <button class="btn showDesc">^</button>
+                        <button class="btn edit">Edit</button>
+                        <button class="btn delateTask">Delete</button>
+                    </div>
+                </div>
+
+                <p class="teskDescription hidden"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="./scirpt.js"></script>
+</body>
+</html>
