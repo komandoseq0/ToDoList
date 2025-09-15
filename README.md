@@ -11,7 +11,6 @@ Prosta aplikacja **ToDo List** stworzona w **HTML, CSS i JavaScript**, pozwalaj�
 - ❌ Usuwanie zadań.  
 - 🔍 Filtrowanie zadań według kategorii (**Done**, **Not done**, **During** lub wszystkie).  
 - 🖥️ Podgląd opisu zadania po kliknięciu przycisku.  
-- 🖤 Prosty, ciemny i responsywny interfejs.
 
 ---
 
