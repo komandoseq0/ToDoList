@@ -1,160 +1,452 @@
+// ─────────────────────────────────────────────
+//  INDUSTRIAL THEME — ToDoList
+//  Palette: steel, rust, carbon, hazard yellow
+// ─────────────────────────────────────────────
+
+// Tokens
+$bg:          #0f0f0f;
+$surface:     #1a1a1a;
+$surface-2:   #232323;
+$surface-3:   #2d2d2d;
+$border:      #3a3a3a;
+$border-hi:   #555;
+$accent:      #f0a500;      // hazard amber
+$accent-dim:  #b07800;
+$danger:      #c0392b;
+$success:     #27ae60;
+$during:      #2980b9;
+$text:        #e8e8e8;
+$text-dim:    #888;
+$text-muted:  #555;
+$font-main:   'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+$font-mono:   'Share Tech Mono', 'Courier New', monospace;
+
+// ─── Reset ───────────────────────────────────
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+// ─── Base ─────────────────────────────────────
 body {
-    background-color: #333;
+    background-color: $bg;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 39px,
+            rgba(255,255,255,0.018) 39px,
+            rgba(255,255,255,0.018) 40px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 39px,
+            rgba(255,255,255,0.012) 39px,
+            rgba(255,255,255,0.012) 40px
+        );
+    color: $text;
+    font-family: $font-main;
+    min-height: 100vh;
 }
 
+// ─── Layout ───────────────────────────────────
 .wrapper {
-	margin: 0 auto;
-	max-width: 1800px;
-	width: 100%;
+    margin: 0 auto;
+    max-width: 900px;
+    width: 100%;
+    padding: 0 16px;
 }
 
+// ─── Top Bar ──────────────────────────────────
 .top {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    padding: 18px 24px;
+    background: $surface;
+    border-bottom: 3px solid $accent;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+    max-width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 2px;
+    }
+
+    .brand-prefix {
+        font-family: $font-mono;
+        color: $accent;
+        font-size: 22px;
+        letter-spacing: -1px;
+    }
 
     h1 {
-        font-size: 40px;
+        font-family: $font-main;
+        font-size: 38px;
+        font-weight: 900;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: $text;
+        line-height: 1;
     }
 }
 
+// ─── Buttons ──────────────────────────────────
 .btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: none;
-    border: none;
-    background-color: royalblue;
-    padding: 10px 20px;
-    border-radius: 10px;
+    border: 2px solid $accent;
+    color: $accent;
+    font-family: $font-main;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 0;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+
+    &:hover {
+        background: $accent;
+        color: #000;
+        box-shadow: 0 0 12px rgba($accent, 0.5);
+    }
+
+    &:active {
+        background: $accent-dim;
+        border-color: $accent-dim;
+    }
 }
 
-// Modal
+// Contextual button variants
+.delateTask {
+    border-color: $danger;
+    color: $danger;
+    &:hover {
+        background: $danger;
+        color: #fff;
+        box-shadow: 0 0 10px rgba($danger, 0.5);
+    }
+}
 
+.edit {
+    border-color: $border-hi;
+    color: $text-dim;
+    &:hover {
+        background: $surface-3;
+        color: $text;
+        box-shadow: none;
+    }
+}
+
+// ─── Hidden / Animation ───────────────────────
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .showing {
-    animation: showing 1s;
-}
-
-.taskModal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-
-    background-color: #6b6b6b;
-    padding: 50px;
-    border-radius: 5px;
-    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-    z-index: 10;
-
-    h2 {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    p {
-        margin: 5px 0;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .error {
-        font-size: 16px;
-        color: red;
-    }
-
-    input {
-        width: 100%;
-    }
-
-    textarea {
-        resize: vertical;
-        max-height: 300px;
-        width: 100%;
-    }
-
-    .btn {
-        margin: 0 auto;
-        margin-top: 30px;
-    }
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .6);
-    backdrop-filter: blur(3px);
-    z-index: 5;
-    transition: .3s;
-}
-
-.infobox {
-    margin-top: 20px;
-    font-size: 22px;
-    text-align: center;
-}
-
-.task {
-    background-color: royalblue;
-    border-radius: 15px;
-    margin: 10px 0;
-    padding: 20px;
-
-    .right {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .infoTask {
-        display: flex;
-        justify-content: space-between;
-
-        .taskName {
-            font-size: 36px;
-        }
-
-        .taskCategory {
-            font-size: 20px;
-        }
-    }
-
-    .teskDescription {
-        margin-top: 15px;
-        font-size: 20px;
-    }
-
-    button {
-        border: 1px solid black;
-        background-color: rgb(51, 85, 189);
-    }
-
-    .showDesc {
-        margin-right: 5px;
-    }
+    animation: showing 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes showing {
     0% {
         opacity: 0;
-        scale: .95;
+        transform: translate(-50%, -46%) scale(0.97);
     }
-
     100% {
         opacity: 1;
-        scale: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+// ─── Overlay ──────────────────────────────────
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+    transition: opacity 0.3s;
+}
+
+// ─── Modal ────────────────────────────────────
+.taskModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(560px, 92vw);
+    background: $surface;
+    border: 1px solid $border;
+    border-top: 4px solid $accent;
+    padding: 0 40px 36px;
+    z-index: 10;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.04);
+
+    .modal-header-bar {
+        height: 4px;
+        background: repeating-linear-gradient(
+            90deg,
+            $accent 0px,
+            $accent 16px,
+            #000 16px,
+            #000 20px
+        );
+        margin: 0 -40px 28px;
+    }
+
+    h2.modalMessage {
+        font-family: $font-mono;
+        font-size: 18px;
+        font-weight: normal;
+        letter-spacing: 3px;
+        color: $accent;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+    }
+
+    .field-label {
+        display: block;
+        font-family: $font-mono;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: $text-muted;
+        margin-bottom: 6px;
+        margin-top: 18px;
+    }
+
+    .error {
+        font-family: $font-mono;
+        font-size: 12px;
+        color: $danger;
+        margin-top: 4px;
+        letter-spacing: 1px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        background: $surface-2;
+        border: 1px solid $border;
+        border-left: 3px solid $border-hi;
+        color: $text;
+        font-family: $font-mono;
+        font-size: 15px;
+        padding: 10px 14px;
+        outline: none;
+        border-radius: 0;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        appearance: none;
+        -webkit-appearance: none;
+
+        &:focus {
+            border-color: $accent;
+            border-left-color: $accent;
+            box-shadow: 0 0 0 1px rgba($accent, 0.3);
+        }
+
+        &::placeholder {
+            color: $text-muted;
+        }
+    }
+
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0a500' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 36px;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+        max-height: 240px;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+
+        .btn {
+            flex: 1;
+            justify-content: center;
+        }
+    }
+}
+
+// ─── Filter Bar ───────────────────────────────
+.infobox {
+    max-width: 900px;
+    margin: 28px auto 0;
+    padding: 14px 24px;
+    background: $surface;
+    border: 1px solid $border;
+    border-left: 4px solid $accent;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .filter-label {
+        font-family: $font-mono;
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: $text-muted;
+        white-space: nowrap;
+    }
+
+    select {
+        flex: 1;
+        background: $surface-2;
+        border: 1px solid $border;
+        color: $text;
+        font-family: $font-mono;
+        font-size: 14px;
+        padding: 8px 36px 8px 12px;
+        border-radius: 0;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0a500' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        cursor: pointer;
+        transition: border-color 0.2s;
+
+        &:focus {
+            border-color: $accent;
+        }
+
+        option {
+            background: $surface-2;
+        }
+    }
+}
+
+// ─── Task Box ─────────────────────────────────
+.taskBox {
+    margin-top: 16px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+// ─── Task Card ────────────────────────────────
+.task {
+    background: $surface;
+    border: 1px solid $border;
+    border-left: 5px solid $accent;
+    padding: 18px 20px;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    // Corner rivets
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: $border-hi;
+        border-radius: 50%;
+        top: 8px;
+    }
+    &::before { right: 8px; }
+    &::after  { right: 18px; }
+
+    &:hover {
+        border-color: $accent;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.5), inset 0 0 0 1px rgba($accent, 0.08);
+    }
+
+    // Category color coding
+    &[data-category="Done"] {
+        border-left-color: $success;
+        &:hover { border-color: $success; }
+    }
+    &[data-category="Not done"] {
+        border-left-color: $danger;
+        &:hover { border-color: $danger; }
+    }
+    &[data-category="During"] {
+        border-left-color: $during;
+        &:hover { border-color: $during; }
+    }
+
+    .infoTask {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        .left {
+            flex: 1;
+            min-width: 0;
+
+            .taskName {
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: $text;
+                line-height: 1.1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .taskCategory {
+                font-family: $font-mono;
+                font-size: 12px;
+                letter-spacing: 2px;
+                color: $text-dim;
+                margin-top: 4px;
+            }
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+    }
+
+    .teskDescription {
+        font-family: $font-mono;
+        font-size: 14px;
+        color: $text-dim;
+        line-height: 1.6;
+        margin-top: 14px;
+        padding: 12px 14px;
+        background: $surface-2;
+        border-left: 2px solid $border-hi;
+        border-top: 1px solid $border;
+        white-space: pre-wrap;
+    }
+
+    // Override show-desc button
+    .showDesc {
+        font-size: 12px;
+        padding: 6px 12px;
+        letter-spacing: 0;
+    }
+}
+
+// ─── Status badges on category text ───────────────
+.taskCategory {
+    &::before {
+        content: '● ';
+        font-size: 10px;
     }
 }

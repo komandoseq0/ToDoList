@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -5,139 +6,365 @@
 }
 
 body {
-  background-color: #333;
+  background-color: #0f0f0f;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255, 255, 255, 0.018) 39px, rgba(255, 255, 255, 0.018) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255, 255, 255, 0.012) 39px, rgba(255, 255, 255, 0.012) 40px);
+  color: #e8e8e8;
+  font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  min-height: 100vh;
 }
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1800px;
+  max-width: 900px;
   width: 100%;
+  padding: 0 16px;
 }
 
 .top {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  padding: 18px 24px;
+  background: #1a1a1a;
+  border-bottom: 3px solid #f0a500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  max-width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+.top .brand {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.top .brand-prefix {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  color: #f0a500;
+  font-size: 22px;
+  letter-spacing: -1px;
 }
 .top h1 {
-  font-size: 40px;
+  font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e8e8e8;
+  line-height: 1;
 }
 
 .btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: none;
-  border: none;
-  background-color: royalblue;
-  padding: 10px 20px;
-  border-radius: 10px;
+  border: 2px solid #f0a500;
+  color: #f0a500;
+  font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 0;
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.btn:hover {
+  background: #f0a500;
+  color: #000;
+  box-shadow: 0 0 12px rgba(240, 165, 0, 0.5);
+}
+.btn:active {
+  background: #b07800;
+  border-color: #b07800;
+}
+
+.delateTask {
+  border-color: #c0392b;
+  color: #c0392b;
+}
+.delateTask:hover {
+  background: #c0392b;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.5);
+}
+
+.edit {
+  border-color: #555;
+  color: #888;
+}
+.edit:hover {
+  background: #2d2d2d;
+  color: #e8e8e8;
+  box-shadow: none;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .showing {
-  animation: showing 1s;
-}
-
-.taskModal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  background-color: #6b6b6b;
-  padding: 50px;
-  border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: 10;
-}
-.taskModal h2 {
-  text-align: center;
-  font-size: 40px;
-}
-.taskModal p {
-  margin: 5px 0;
-  font-size: 20px;
-  font-weight: bold;
-}
-.taskModal .error {
-  font-size: 16px;
-  color: red;
-}
-.taskModal input {
-  width: 100%;
-}
-.taskModal textarea {
-  resize: vertical;
-  max-height: 300px;
-  width: 100%;
-}
-.taskModal .btn {
-  margin: 0 auto;
-  margin-top: 30px;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
-  z-index: 5;
-  transition: 0.3s;
-}
-
-.infobox {
-  margin-top: 20px;
-  font-size: 22px;
-  text-align: center;
-}
-
-.task {
-  background-color: royalblue;
-  border-radius: 15px;
-  margin: 10px 0;
-  padding: 20px;
-}
-.task .right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.task .infoTask {
-  display: flex;
-  justify-content: space-between;
-}
-.task .infoTask .taskName {
-  font-size: 36px;
-}
-.task .infoTask .taskCategory {
-  font-size: 20px;
-}
-.task .teskDescription {
-  margin-top: 15px;
-  font-size: 20px;
-}
-.task button {
-  border: 1px solid black;
-  background-color: rgb(51, 85, 189);
-}
-.task .showDesc {
-  margin-right: 5px;
+  animation: showing 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes showing {
   0% {
     opacity: 0;
-    scale: 0.95;
+    transform: translate(-50%, -46%) scale(0.97);
   }
   100% {
     opacity: 1;
-    scale: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
-}/*# sourceMappingURL=style.css.map */
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+  transition: opacity 0.3s;
+}
+
+.taskModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, 92vw);
+  background: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  border-top: 4px solid #f0a500;
+  padding: 0 40px 36px;
+  z-index: 10;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.taskModal .modal-header-bar {
+  height: 4px;
+  background: repeating-linear-gradient(90deg, #f0a500 0px, #f0a500 16px, #000 16px, #000 20px);
+  margin: 0 -40px 28px;
+}
+.taskModal h2.modalMessage {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  color: #f0a500;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.taskModal .field-label {
+  display: block;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #555;
+  margin-bottom: 6px;
+  margin-top: 18px;
+}
+.taskModal .error {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+.taskModal input, .taskModal select, .taskModal textarea {
+  width: 100%;
+  background: #232323;
+  border: 1px solid #3a3a3a;
+  border-left: 3px solid #555;
+  color: #e8e8e8;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 15px;
+  padding: 10px 14px;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.taskModal input:focus, .taskModal select:focus, .taskModal textarea:focus {
+  border-color: #f0a500;
+  border-left-color: #f0a500;
+  box-shadow: 0 0 0 1px rgba(240, 165, 0, 0.3);
+}
+.taskModal input::placeholder, .taskModal select::placeholder, .taskModal textarea::placeholder {
+  color: #555;
+}
+.taskModal select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0a500' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.taskModal textarea {
+  resize: vertical;
+  min-height: 100px;
+  max-height: 240px;
+}
+.taskModal .modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+.taskModal .modal-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+.infobox {
+  max-width: 900px;
+  margin: 28px auto 0;
+  padding: 14px 24px;
+  background: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  border-left: 4px solid #f0a500;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.infobox .filter-label {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #555;
+  white-space: nowrap;
+}
+.infobox select {
+  flex: 1;
+  background: #232323;
+  border: 1px solid #3a3a3a;
+  color: #e8e8e8;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 14px;
+  padding: 8px 36px 8px 12px;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0a500' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.infobox select:focus {
+  border-color: #f0a500;
+}
+.infobox select option {
+  background: #232323;
+}
+
+.taskBox {
+  margin-top: 16px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task {
+  background: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  border-left: 5px solid #f0a500;
+  padding: 18px 20px;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.task::before, .task::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #555;
+  border-radius: 50%;
+  top: 8px;
+}
+.task::before {
+  right: 8px;
+}
+.task::after {
+  right: 18px;
+}
+.task:hover {
+  border-color: #f0a500;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(240, 165, 0, 0.08);
+}
+.task[data-category=Done] {
+  border-left-color: #27ae60;
+}
+.task[data-category=Done]:hover {
+  border-color: #27ae60;
+}
+.task[data-category="Not done"] {
+  border-left-color: #c0392b;
+}
+.task[data-category="Not done"]:hover {
+  border-color: #c0392b;
+}
+.task[data-category=During] {
+  border-left-color: #2980b9;
+}
+.task[data-category=During]:hover {
+  border-color: #2980b9;
+}
+.task .infoTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.task .infoTask .left {
+  flex: 1;
+  min-width: 0;
+}
+.task .infoTask .left .taskName {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e8e8e8;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.task .infoTask .left .taskCategory {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+  margin-top: 4px;
+}
+.task .infoTask .right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.task .teskDescription {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #232323;
+  border-left: 2px solid #555;
+  border-top: 1px solid #3a3a3a;
+  white-space: pre-wrap;
+}
+.task .showDesc {
+  font-size: 12px;
+  padding: 6px 12px;
+  letter-spacing: 0;
+}
+
+.taskCategory::before {
+  content: "● ";
+  font-size: 10px;
+}

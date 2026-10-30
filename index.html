@@ -3,47 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDoList — INDUSTRIAL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     
     <main>
         <div class="top">
-            <h1>ToDoList</h1>
-
-            <button class="btn addTask">Add</button>
+            <div class="brand">
+                <span class="brand-prefix">// </span><h1>ToDoList</h1>
+            </div>
+            <button class="btn addTask">&#xFF0B; New Task</button>
         </div>
 
         <div class="taskModal hidden">
-            <h2 class="modalMessage">Create task</h2>
+            <div class="modal-header-bar"></div>
+            <h2 class="modalMessage">// CREATE TASK</h2>
 
-            <p>Name of task</p>
-            <input type="text" name="" id="" class="taskName">
-            <p class="errorName error hidden">Fill this ^</p>
-            <p>Choose category</p>
+            <label class="field-label">TASK NAME</label>
+            <input type="text" name="" id="" class="taskName" placeholder="Enter task identifier...">
+            <p class="errorName error hidden">⚠ Field required</p>
+            <label class="field-label">STATUS</label>
             <select id="addCategory" name="category" class="category">
-                <option value="Done">Done</option>
-                <option value="Not done">Not done</option>
-                <option value="During">During</option>
+                <option value="Done">✔ DONE</option>
+                <option value="Not done">✘ NOT DONE</option>
+                <option value="During">◈ IN PROGRESS</option>
             </select>
-            <p class="errorCate error hidden">Fill this ^</p>
-              <p>Describe it</p>
-              <textarea name="" id="" class="taskDesc"></textarea>
+            <p class="errorCate error hidden">⚠ Field required</p>
+            <label class="field-label">DESCRIPTION</label>
+            <textarea name="" id="" class="taskDesc" placeholder="Describe the task..."></textarea>
 
-              <button class="btn closeModalAdd">Add task</button>
-              <button class="btn closeModalEdit hidden">Edit task</button>
+            <div class="modal-actions">
+                <button class="btn closeModalAdd">&#x2713; Confirm</button>
+                <button class="btn closeModalEdit hidden">&#x270E; Update</button>
+            </div>
         </div>
         <div class="overlay hidden"></div>
 
         <div class="infobox">
-            <h2>Search tasks by category</h2>
+            <span class="filter-label">FILTER:</span>
             <select id="category" name="category" class="categoryF">
-                <option value="All">All</option>
-                <option value="Done">Done</option>
-                <option value="Not done">Not done</option>
-                <option value="During">During</option>
-              </select>
+                <option value="All">ALL TASKS</option>
+                <option value="Done">✔ DONE</option>
+                <option value="Not done">✘ NOT DONE</option>
+                <option value="During">◈ IN PROGRESS</option>
+            </select>
         </div>
 
         <div class="taskBox wrapper">
@@ -54,12 +61,11 @@
                         <p class="taskCategory"></p>
                     </div>
                     <div class="right">
-                        <button class="btn showDesc">^</button>
-                        <button class="btn edit">Edit</button>
-                        <button class="btn delateTask">Delete</button>
+                        <button class="btn showDesc" title="Toggle description">&#x25BC;</button>
+                        <button class="btn edit">&#x270E; Edit</button>
+                        <button class="btn delateTask">&#x2715; Del</button>
                     </div>
                 </div>
-
                 <p class="teskDescription hidden"></p>
             </div>
         </div>

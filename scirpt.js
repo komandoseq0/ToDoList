@@ -56,6 +56,7 @@ const loopingThroughTasks = function(i) {
     taskClone.querySelector(".taskName").textContent = tasks[i].name;
     taskClone.querySelector(".taskCategory").textContent = tasks[i].category;
     taskClone.querySelector(".teskDescription").textContent = tasks[i].desc;
+    taskClone.setAttribute("data-category", tasks[i].category);
 
     // Showing tasks
     tasksBox.appendChild(taskClone);
