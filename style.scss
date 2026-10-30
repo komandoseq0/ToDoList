@@ -1,16 +1,10 @@
-// ─────────────────────────────────────────────
-//  INDUSTRIAL THEME — ToDoList
-//  Palette: steel, rust, carbon, hazard yellow
-// ─────────────────────────────────────────────
-
-// Tokens
 $bg:          #0f0f0f;
 $surface:     #1a1a1a;
 $surface-2:   #232323;
 $surface-3:   #2d2d2d;
 $border:      #3a3a3a;
 $border-hi:   #555;
-$accent:      #f0a500;      // hazard amber
+$accent:      #f0a500;
 $accent-dim:  #b07800;
 $danger:      #c0392b;
 $success:     #27ae60;
@@ -21,14 +15,12 @@ $text-muted:  #555;
 $font-main:   'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
 $font-mono:   'Share Tech Mono', 'Courier New', monospace;
 
-// ─── Reset ───────────────────────────────────
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-// ─── Base ─────────────────────────────────────
 body {
     background-color: $bg;
     background-image:
@@ -51,7 +43,6 @@ body {
     min-height: 100vh;
 }
 
-// ─── Layout ───────────────────────────────────
 .wrapper {
     margin: 0 auto;
     max-width: 900px;
@@ -59,7 +50,6 @@ body {
     padding: 0 16px;
 }
 
-// ─── Top Bar ──────────────────────────────────
 .top {
     display: flex;
     justify-content: space-between;
@@ -97,7 +87,6 @@ body {
     }
 }
 
-// ─── Buttons ──────────────────────────────────
 .btn {
     display: inline-flex;
     align-items: center;
@@ -128,7 +117,6 @@ body {
     }
 }
 
-// Contextual button variants
 .delateTask {
     border-color: $danger;
     color: $danger;
@@ -149,7 +137,6 @@ body {
     }
 }
 
-// ─── Hidden / Animation ───────────────────────
 .hidden {
     display: none !important;
 }
@@ -169,7 +156,6 @@ body {
     }
 }
 
-// ─── Overlay ──────────────────────────────────
 .overlay {
     position: fixed;
     inset: 0;
@@ -179,7 +165,6 @@ body {
     transition: opacity 0.3s;
 }
 
-// ─── Modal ────────────────────────────────────
 .taskModal {
     position: fixed;
     top: 50%;
@@ -284,7 +269,6 @@ body {
     }
 }
 
-// ─── Filter Bar ───────────────────────────────
 .infobox {
     max-width: 900px;
     margin: 28px auto 0;
@@ -332,7 +316,6 @@ body {
     }
 }
 
-// ─── Task Box ─────────────────────────────────
 .taskBox {
     margin-top: 16px;
     padding-bottom: 48px;
@@ -341,7 +324,6 @@ body {
     gap: 10px;
 }
 
-// ─── Task Card ────────────────────────────────
 .task {
     background: $surface;
     border: 1px solid $border;
@@ -350,7 +332,6 @@ body {
     position: relative;
     transition: border-color 0.2s, box-shadow 0.2s;
 
-    // Corner rivets
     &::before,
     &::after {
         content: '';
@@ -369,7 +350,6 @@ body {
         box-shadow: 0 4px 18px rgba(0,0,0,0.5), inset 0 0 0 1px rgba($accent, 0.08);
     }
 
-    // Category color coding
     &[data-category="Done"] {
         border-left-color: $success;
         &:hover { border-color: $success; }
@@ -435,7 +415,6 @@ body {
         white-space: pre-wrap;
     }
 
-    // Override show-desc button
     .showDesc {
         font-size: 12px;
         padding: 6px 12px;
@@ -443,7 +422,6 @@ body {
     }
 }
 
-// ─── Status badges on category text ───────────────
 .taskCategory {
     &::before {
         content: '● ';
